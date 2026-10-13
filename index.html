@@ -1,1 +1,769 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Bichinho Chick | Demonstração Black Tech</title>
+
+<meta name="description" content="Demonstração de site para pet shop desenvolvida pela Black Tech.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0b0b0f;
+  --surface: #17131c;
+  --surface-light: #211825;
+  --pink: #ff4fa3;
+  --pink-light: #ffb6d9;
+  --white: #ffffff;
+  --muted: #c6b8c5;
+  --border: #382638;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: "Nunito", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+.container {
+  width: min(1150px, 90%);
+  margin: auto;
+}
+
+section {
+  padding: 95px 0;
+}
+
+h1, h2, h3, p {
+  margin-top: 0;
+}
+
+h1, h2, h3 {
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11,11,15,.96);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(15px);
+}
+
+.nav {
+  min-height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -.7px;
+}
+
+.logo span {
+  color: var(--pink);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e5d8e3;
+  transition: .3s;
+}
+
+nav a:hover {
+  color: var(--pink);
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 25px;
+  border-radius: 50px;
+  background: var(--pink);
+  color: #180b14;
+  font-weight: 900;
+  border: 2px solid var(--pink);
+  cursor: pointer;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: #ff7abb;
+  border-color: #ff7abb;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255,79,163,.25);
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border-color: #a66a8b;
+}
+
+.btn-outline:hover {
+  background: #321c2b;
+  color: white;
+  border-color: var(--pink);
+}
+
+.hero {
+  min-height: 670px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg,
+      rgba(11,11,15,.99) 0%,
+      rgba(11,11,15,.94) 40%,
+      rgba(11,11,15,.42) 100%
+    ),
+    url("https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: rgba(255,79,163,.12);
+  filter: blur(100px);
+  right: -100px;
+  bottom: -100px;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 690px;
+}
+
+.tag {
+  display: inline-block;
+  color: var(--pink-light);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: clamp(43px, 6vw, 78px);
+  line-height: 1.12;
+  letter-spacing: -2px;
+  margin-bottom: 25px;
+}
+
+h1 span {
+  color: var(--pink);
+}
+
+.hero p {
+  max-width: 520px;
+  color: #e1d4df;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.section-title h2 {
+  font-size: clamp(32px, 4vw, 49px);
+  margin-bottom: 15px;
+}
+
+.section-title h2 span {
+  color: var(--pink);
+}
+
+.section-title p {
+  color: var(--muted);
+  max-width: 620px;
+  margin: auto;
+  line-height: 1.8;
+}
+
+.line {
+  width: 65px;
+  height: 4px;
+  background: var(--pink);
+  border-radius: 10px;
+  margin: 20px auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.card {
+  background: linear-gradient(145deg, #211825, #141117);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 35px;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+  border-color: var(--pink);
+  box-shadow: 0 15px 35px rgba(0,0,0,.3);
+}
+
+.card .icon {
+  font-size: 42px;
+  margin-bottom: 18px;
+}
+
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.galeria-section {
+  background: #120e15;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  transition: .4s;
+}
+
+.gallery img:hover {
+  transform: scale(1.025);
+  border-color: var(--pink);
+}
+
+.diferenciais {
+  background: #0d0b10;
+}
+
+.diferencial {
+  text-align: center;
+  background: #1b1420;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 35px;
+  transition: .3s;
+}
+
+.diferencial:hover {
+  border-color: var(--pink);
+  transform: translateY(-6px);
+}
+
+.diferencial .icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.diferencial h3 {
+  font-size: 21px;
+}
+
+.diferencial p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.faq {
+  background: #120e15;
+}
+
+.faq-lista {
+  max-width: 850px;
+  margin: auto;
+}
+
+.faq-item {
+  background: #211825;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.faq-item[open] {
+  border-color: var(--pink);
+}
+
+.faq-item summary {
+  padding: 23px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.faq-item p {
+  color: var(--muted);
+  line-height: 1.8;
+  padding: 0 23px 23px;
+  margin: 0;
+}
+
+.contact {
+  text-align: center;
+  background: radial-gradient(circle at top, #43213b, #0b0b0f 70%);
+}
+
+.contact h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  margin-bottom: 20px;
+}
+
+.contact p {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.demo-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 20px !important;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 35px 0;
+  color: #b8a5b5;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+footer .demo {
+  max-width: 850px;
+  margin: 0 auto 20px;
+  font-size: 12px;
+}
+
+.floating {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 200;
+  background: var(--pink);
+  color: #180b14;
+  padding: 15px 22px;
+  border-radius: 50px;
+  font-weight: 900;
+  box-shadow: 0 8px 30px rgba(255,79,163,.3);
+  transition: .3s;
+}
+
+.floating:hover {
+  transform: translateY(-4px);
+  background: #ff7abb;
+}
+
+@media(max-width: 850px) {
+  .nav {
+    flex-wrap: wrap;
+    padding: 18px 0;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .grid, .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 70px 0;
+  }
+
+  .hero {
+    min-height: 580px;
+  }
+
+  .gallery img {
+    height: 320px;
+  }
+}
+
+@media(max-width: 480px) {
+  h1 {
+    letter-spacing: -1px;
+  }
+
+  .hero {
+    min-height: 550px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .floating {
+    right: 12px;
+    bottom: 12px;
+    padding: 13px 17px;
+    font-size: 13px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card, .gallery img, .diferencial, .btn {
+    transition: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#inicio" class="logo">
+      🐾 BICHINHO <span>CHICK</span>
+    </a>
+
+    <nav aria-label="Menu principal">
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-content">
+
+      <span class="tag">🐾 CARINHO • CUIDADO • ESTILO</span>
+
+      <h1>
+        SEU PET MERECE<br>
+        <span>TODO ESSE CARINHO.</span>
+      </h1>
+
+      <p>
+        Uma proposta de site para apresentar o universo
+        da Bichinho Chick de forma moderna, acolhedora
+        e cheia de personalidade.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contato" class="btn">🐶 CONHECER AGENDAMENTO</a>
+        <a href="#servicos" class="btn btn-outline">VER SERVIÇOS</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="tag">CONCEITO DE SERVIÇOS</span>
+      <h2>CUIDADOS PARA <span>SEU PET</span></h2>
+      <div class="line"></div>
+      <p>
+        Exemplos de serviços para esta demonstração.
+        A disponibilidade real deve ser confirmada com o estabelecimento.
+      </p>
+    </div>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="icon">🛁</div>
+        <h3>Banho</h3>
+        <p>
+          Uma proposta de cuidado e higiene
+          para deixar seu companheiro confortável.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="icon">✂️</div>
+        <h3>Tosa</h3>
+        <p>
+          Estilo e atenção aos detalhes
+          em uma experiência pensada para o pet.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="icon">🐾</div>
+        <h3>Banho + Tosa</h3>
+        <p>
+          Uma combinação de serviços que poderia
+          ser apresentada em um site oficial.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="galeria-section" id="galeria">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="tag">MOMENTOS FOFOS</span>
+      <h2>GALERIA <span>PET</span></h2>
+      <div class="line"></div>
+      <p>
+        Fotografias ilustrativas para demonstrar
+        como poderia funcionar uma galeria de clientes.
+      </p>
+    </div>
+
+    <div class="gallery">
+
+      <img
+        src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=700&q=80"
+        alt="Cachorro — fotografia ilustrativa"
+        loading="lazy"
+      >
+
+      <img
+        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80"
+        alt="Gato — fotografia ilustrativa"
+        loading="lazy"
+      >
+
+      <img
+        src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=700&q=80"
+        alt="Cachorro — fotografia ilustrativa"
+        loading="lazy"
+      >
+
+    </div>
+  </div>
+</section>
+
+<section class="diferenciais" id="diferenciais">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="tag">UMA EXPERIÊNCIA ESPECIAL</span>
+      <h2>MAIS <span>CARINHO</span> EM CADA DETALHE</h2>
+      <div class="line"></div>
+      <p>
+        Ideias de diferenciais para uma futura
+        apresentação oficial do pet shop.
+      </p>
+    </div>
+
+    <div class="grid">
+
+      <article class="diferencial">
+        <div class="icon">❤️</div>
+        <h3>CARINHO</h3>
+        <p>
+          Uma comunicação acolhedora para
+          quem considera o pet parte da família.
+        </p>
+      </article>
+
+      <article class="diferencial">
+        <div class="icon">✨</div>
+        <h3>CUIDADO</h3>
+        <p>
+          Uma apresentação visual que valoriza
+          os detalhes dos serviços oferecidos.
+        </p>
+      </article>
+
+      <article class="diferencial">
+        <div class="icon">📱</div>
+        <h3>PRATICIDADE</h3>
+        <p>
+          Informações organizadas e acesso
+          facilitado aos canais de atendimento.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="tag">DÚVIDAS FREQUENTES</span>
+      <h2>COMO <span>FUNCIONARIA?</span></h2>
+      <div class="line"></div>
+      <p>
+        Exemplos de perguntas para uma possível
+        versão oficial do site.
+      </p>
+    </div>
+
+    <div class="faq-lista">
+
+      <details class="faq-item">
+        <summary>Como funcionaria o agendamento?</summary>
+        <p>
+          O cliente poderia ser direcionado para o WhatsApp
+          ou sistema de agendamento utilizado pelo pet shop,
+          após autorização do estabelecimento.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Quais serviços poderiam aparecer no site?</summary>
+        <p>
+          Os serviços e valores oficiais seriam adicionados
+          conforme as informações fornecidas pelo estabelecimento.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Como encontrar o pet shop?</summary>
+        <p>
+          A localização, os horários de funcionamento e um
+          botão para o mapa poderiam ser adicionados após confirmação.
+        </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="container">
+
+    <span class="tag">🐾 CONTATO E AGENDAMENTO</span>
+
+    <h2>UM CUIDADO ESPECIAL <br>COMEÇA AQUI!</h2>
+
+    <p>
+      Imagine seus clientes encontrando os serviços
+      do pet shop e acessando o canal de atendimento
+      de maneira simples, rápida e organizada.
+    </p>
+
+    <a href="#aviso" class="btn">
+      🩷 AGENDAMENTO — DEMONSTRAÇÃO
+    </a>
+
+    <p class="demo-note">
+      Este botão é apenas demonstrativo.
+      Nenhum agendamento será realizado.
+      A integração real dependerá de autorização do estabelecimento.
+    </p>
+
+  </div>
+</section>
+
+</main>
+
+<footer id="aviso">
+  <div class="container">
+
+    <p class="demo">
+      Projeto conceitual independente desenvolvido pela Black Tech.
+      Não é o site oficial da Bichinho Chick e não representa
+      uma parceria com o estabelecimento.
+      Serviços, diferenciais e fotografias são ilustrativos.
+      Nenhum agendamento é realizado nesta página.
+    </p>
+
+    <p>© 2026 Black Tech — Demonstração.</p>
+
+  </div>
+</footer>
+
+<a
+  href="#contato"
+  class="floating"
+  aria-label="Ver demonstração de agendamento"
+>
+  🐾 Agendar
+</a>
+
+</body>
+</html>
